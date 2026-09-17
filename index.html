@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A quick game about spotting primary sources of law."
+    />
+    <meta name="theme-color" content="#e8ff45" />
+    <title>LAW / NOT LAW</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell" aria-labelledby="game-title">
+      <header class="topbar">
+        <h1 id="game-title" class="wordmark" aria-label="Law or Not Law">
+          <span>LAW</span><span class="slash" aria-hidden="true">/</span><span>NOT LAW</span>
+        </h1>
+
+        <div class="game-meta" aria-label="Game progress">
+          <span id="progress">1 / 10</span>
+          <span class="meta-divider" aria-hidden="true"></span>
+          <span id="score">0 right</span>
+        </div>
+      </header>
+
+      <section id="game-screen" class="game-screen" aria-label="Current question">
+        <div class="prompt-wrap">
+          <p class="prompt">Does this count as law?</p>
+
+          <article id="card" class="question-card" tabindex="-1">
+            <span class="card-mark" aria-hidden="true">§?</span>
+            <h2 id="card-title">U.S. Constitution</h2>
+            <div id="feedback" class="feedback" aria-live="polite" hidden>
+              <p id="feedback-status" class="feedback-status"></p>
+              <p id="feedback-text" class="feedback-text"></p>
+            </div>
+          </article>
+        </div>
+
+        <div id="answer-actions" class="answer-actions" aria-label="Choose an answer">
+          <button class="answer-button law-button" type="button" data-answer="law">
+            <span>LAW</span>
+            <kbd>L</kbd>
+          </button>
+          <button class="answer-button not-law-button" type="button" data-answer="not-law">
+            <span>NOT LAW</span>
+            <kbd>N</kbd>
+          </button>
+        </div>
+
+        <button id="next-button" class="next-button" type="button" hidden>
+          NEXT <span aria-hidden="true">→</span>
+        </button>
+      </section>
+
+      <section id="end-screen" class="end-screen" aria-labelledby="end-title" hidden>
+        <p class="finish-mark" aria-hidden="true">10 / 10</p>
+        <h2 id="end-title">You finished<br />LAW / NOT LAW</h2>
+        <p id="final-score" class="final-score">0 out of 10</p>
+        <p class="teaching-point">
+          The things you identified as LAW are examples of primary sources of law. They come
+          from bodies with legal authority, such as constitutions, legislatures, courts, and
+          agencies.
+        </p>
+        <button id="play-again-button" class="play-again-button" type="button">
+          PLAY AGAIN <span aria-hidden="true">↻</span>
+        </button>
+      </section>
+
+      <p class="key-hint">Keyboard: L, N, then Enter</p>
+    </main>
+  </body>
+</html>
