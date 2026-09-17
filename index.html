@@ -7,7 +7,7 @@
       name="description"
       content="A quick game about spotting primary sources of law."
     />
-    <meta name="theme-color" content="#e8ff45" />
+    <meta name="theme-color" content="#d7ef4b" />
     <title>LAW / NOT LAW</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="styles.css" />
@@ -21,9 +21,12 @@
         </h1>
 
         <div class="game-meta" aria-label="Game progress">
-          <span id="progress">1 / 10</span>
-          <span class="meta-divider" aria-hidden="true"></span>
-          <span id="score">0 right</span>
+          <div class="game-meta-copy">
+            <span id="progress">1 / 10</span>
+            <span class="meta-divider" aria-hidden="true"></span>
+            <span id="score">0 right</span>
+          </div>
+          <div id="progress-marks" class="progress-marks" aria-hidden="true"></div>
         </div>
       </header>
 
@@ -58,20 +61,18 @@
       </section>
 
       <section id="end-screen" class="end-screen" aria-labelledby="end-title" hidden>
-        <p class="finish-mark" aria-hidden="true">10 / 10</p>
-        <h2 id="end-title">You finished<br />LAW / NOT LAW</h2>
+        <h2 id="end-title">Round complete</h2>
+        <p class="result-label">Your score</p>
         <p id="final-score" class="final-score">0 out of 10</p>
         <p class="teaching-point">
-          The things you identified as LAW are examples of primary sources of law. They come
-          from bodies with legal authority, such as constitutions, legislatures, courts, and
-          agencies.
+          LAW cards are primary sources created by legal authorities, including constitutions,
+          legislatures, courts, and agencies.
         </p>
         <button id="play-again-button" class="play-again-button" type="button">
           PLAY AGAIN <span aria-hidden="true">↻</span>
         </button>
       </section>
 
-      <p class="key-hint">Keyboard: L, N, then Enter</p>
     </main>
   </body>
 </html>

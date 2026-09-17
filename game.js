@@ -267,11 +267,22 @@ const playAgainButton = document.querySelector("#play-again-button");
 const progress = document.querySelector("#progress");
 const scoreText = document.querySelector("#score");
 const finalScore = document.querySelector("#final-score");
+const progressMarks = document.querySelector("#progress-marks");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+const progressMarkElements = Array.from({ length: ROUND_LENGTH }, () => {
+  const mark = document.createElement("span");
+  mark.className = "progress-mark";
+  progressMarks.append(mark);
+  return mark;
+});
 
 let deck = [];
 let cardIndex = 0;
 let score = 0;
 let answered = false;
+let transitionReady = false;
+let responseTimer;
 
 function shuffled(items) {
   const copy = [...items];
@@ -291,15 +302,28 @@ function buildBalancedDeck() {
 function updateMeta() {
   progress.textContent = `${Math.min(cardIndex + 1, ROUND_LENGTH)} / ${ROUND_LENGTH}`;
   scoreText.textContent = `${score} right`;
+  progressMarkElements.forEach((mark, index) => {
+    mark.classList.toggle("is-complete", index < cardIndex || (answered && index === cardIndex));
+    mark.classList.toggle("is-current", !answered && index === cardIndex);
+  });
 }
 
 function showCard() {
   const current = deck[cardIndex];
+  window.clearTimeout(responseTimer);
   answered = false;
+  transitionReady = false;
   cardTitle.textContent = current.title;
+  card.dataset.titleLength = current.title.length > 34 ? "long" : current.title.length > 24 ? "medium" : "short";
   feedback.hidden = true;
   answerActions.hidden = false;
+  answerActions.classList.remove("is-answered");
+  answerButtons.forEach((button) => {
+    button.disabled = false;
+    button.classList.remove("is-selected", "is-correct-choice", "is-wrong-choice");
+  });
   nextButton.hidden = true;
+  nextButton.classList.remove("is-ready");
   card.classList.remove("is-correct", "is-close", "reveal", "card-enter");
   void card.offsetWidth;
   card.classList.add("card-enter");
@@ -313,18 +337,32 @@ function chooseAnswer(choice) {
   answered = true;
   const current = deck[cardIndex];
   const isCorrect = choice === current.answer;
+  const selectedButton = answerButtons.find((button) => button.dataset.answer === choice);
 
   if (isCorrect) score += 1;
 
+  answerActions.classList.add("is-answered");
+  answerButtons.forEach((button) => {
+    button.disabled = true;
+  });
+  selectedButton.classList.add(
+    "is-selected",
+    isCorrect ? "is-correct-choice" : "is-wrong-choice",
+  );
   feedbackStatus.textContent = isCorrect ? "Yes. You got it." : "Not quite.";
   feedbackText.textContent = current.explanation;
   feedback.hidden = false;
-  answerActions.hidden = true;
-  nextButton.hidden = false;
   card.classList.remove("card-enter");
   card.classList.add(isCorrect ? "is-correct" : "is-close", "reveal");
   updateMeta();
-  nextButton.focus({ preventScroll: true });
+
+  responseTimer = window.setTimeout(() => {
+    answerActions.hidden = true;
+    nextButton.hidden = false;
+    nextButton.classList.add("is-ready");
+    transitionReady = true;
+    nextButton.focus({ preventScroll: true });
+  }, prefersReducedMotion.matches ? 0 : 200);
 }
 
 function showEndScreen() {
@@ -332,11 +370,15 @@ function showEndScreen() {
   endScreen.hidden = false;
   progress.textContent = `${ROUND_LENGTH} / ${ROUND_LENGTH}`;
   finalScore.textContent = `${score} out of ${ROUND_LENGTH}`;
+  progressMarkElements.forEach((mark) => {
+    mark.classList.add("is-complete");
+    mark.classList.remove("is-current");
+  });
   playAgainButton.focus({ preventScroll: true });
 }
 
 function nextCard() {
-  if (!answered) return;
+  if (!answered || !transitionReady) return;
   cardIndex += 1;
   if (cardIndex >= ROUND_LENGTH) {
     showEndScreen();
@@ -366,7 +408,12 @@ document.addEventListener("keydown", (event) => {
   const key = event.key.toLowerCase();
   if (!answered && key === "l") chooseAnswer("law");
   if (!answered && key === "n") chooseAnswer("not-law");
-  if (answered && event.key === "Enter" && document.activeElement !== nextButton) {
+  if (
+    answered &&
+    transitionReady &&
+    event.key === "Enter" &&
+    document.activeElement !== nextButton
+  ) {
     event.preventDefault();
     nextCard();
   }
