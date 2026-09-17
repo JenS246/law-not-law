@@ -50,6 +50,81 @@ const CARD_LIBRARY = [
     explanation: "A valid local court rule governs practice in that court.",
   },
   {
+    title: "Voting Rights Act of 1965",
+    answer: "law",
+    explanation: "The Voting Rights Act is a federal statute enacted by Congress.",
+  },
+  {
+    title: "National Voter Registration Act",
+    answer: "law",
+    explanation: "This act is a federal statute governing voter registration for federal elections.",
+  },
+  {
+    title: "Help America Vote Act",
+    answer: "law",
+    explanation: "This act is a federal statute that sets requirements for election administration.",
+  },
+  {
+    title: "Pennsylvania Election Code",
+    answer: "law",
+    explanation: "The Election Code is statutory law enacted by Pennsylvania's legislature.",
+  },
+  {
+    title: "Federal Rules of Evidence",
+    answer: "law",
+    explanation: "These rules govern evidence in federal courts and have legal authority.",
+  },
+  {
+    title: "Federal Rules of Criminal Procedure",
+    answer: "law",
+    explanation: "These authoritative court rules govern federal criminal proceedings.",
+  },
+  {
+    title: "Federal Rules of Appellate Procedure",
+    answer: "law",
+    explanation: "These authoritative rules govern appeals in federal courts.",
+  },
+  {
+    title: "Federal Rules of Bankruptcy Procedure",
+    answer: "law",
+    explanation: "These authoritative court rules govern federal bankruptcy proceedings.",
+  },
+  {
+    title: "Pennsylvania Rules of Evidence",
+    answer: "law",
+    explanation: "These court rules govern evidence in Pennsylvania proceedings.",
+  },
+  {
+    title: "United States Code provision",
+    answer: "law",
+    explanation: "The United States Code organizes federal statutes currently in force.",
+  },
+  {
+    title: "Code of Federal Regulations provision",
+    answer: "law",
+    explanation: "The Code of Federal Regulations contains rules issued by federal agencies.",
+  },
+  {
+    title: "City ordinance",
+    answer: "law",
+    explanation: "A valid ordinance is law enacted by a local legislative body.",
+  },
+  {
+    title: "Published U.S. Court of Appeals opinion",
+    answer: "law",
+    explanation: "A court of appeals opinion is a primary legal source. Its binding effect depends on jurisdiction.",
+  },
+  {
+    title: "Pennsylvania Superior Court opinion",
+    answer: "law",
+    explanation: "A state appellate opinion is a primary source of case law.",
+  },
+  {
+    title: "Federal district court opinion",
+    answer: "law",
+    explanation: "A judicial opinion is a primary legal source, though its precedential weight may vary.",
+  },
+  {
     title: "Legal textbook",
     answer: "not-law",
     explanation: "A textbook explains law, but it does not itself create law.",
@@ -93,6 +168,86 @@ const CARD_LIBRARY = [
     title: "Black's Law Dictionary",
     answer: "not-law",
     explanation: "A legal dictionary defines terms. It is a research aid, not a primary source.",
+  },
+  {
+    title: "Bill introduced but not enacted",
+    answer: "not-law",
+    explanation: "A proposed bill does not become law unless it completes the required enactment process.",
+  },
+  {
+    title: "Proposed federal regulation",
+    answer: "not-law",
+    explanation: "A proposed rule invites review and comment. It is not yet a final regulation.",
+  },
+  {
+    title: "Nonprofit voter guide",
+    answer: "not-law",
+    explanation: "A voter guide provides information, but it does not create election law.",
+  },
+  {
+    title: "Candidate's campaign platform",
+    answer: "not-law",
+    explanation: "A campaign platform states policy goals. It is not enacted law.",
+  },
+  {
+    title: "News article about voting rights",
+    answer: "not-law",
+    explanation: "A news article reports on the law, but it is not a primary legal source.",
+  },
+  {
+    title: "County election office FAQ",
+    answer: "not-law",
+    explanation: "An FAQ explains election procedures. The governing statutes and regulations are the law.",
+  },
+  {
+    title: "Official election results report",
+    answer: "not-law",
+    explanation: "An election report records results, but it does not create a legal rule.",
+  },
+  {
+    title: "Voter registration form",
+    answer: "not-law",
+    explanation: "A registration form collects information. It is not itself election law.",
+  },
+  {
+    title: "Legal blog post",
+    answer: "not-law",
+    explanation: "A blog post may discuss legal issues, but it is not a primary source of law.",
+  },
+  {
+    title: "Continuing legal education slides",
+    answer: "not-law",
+    explanation: "Training slides explain legal topics. They do not create law.",
+  },
+  {
+    title: "Student's case brief",
+    answer: "not-law",
+    explanation: "A case brief summarizes a judicial opinion. The opinion itself is the primary source.",
+  },
+  {
+    title: "Court docket summary",
+    answer: "not-law",
+    explanation: "A docket summary tracks a case's filings and events. It is not a source of law.",
+  },
+  {
+    title: "Legislative committee report",
+    answer: "not-law",
+    explanation: "A committee report can help explain legislation, but it is not enacted law.",
+  },
+  {
+    title: "Sample contract form",
+    answer: "not-law",
+    explanation: "A sample form is a drafting aid, not a legal rule created by an authority.",
+  },
+  {
+    title: "Trial transcript",
+    answer: "not-law",
+    explanation: "A transcript records what happened in court. It does not itself establish a legal rule.",
+  },
+  {
+    title: "Jury verdict",
+    answer: "not-law",
+    explanation: "A verdict decides a case's facts and outcome. It is not a source of legal rules.",
   },
 ];
 
@@ -211,7 +366,7 @@ document.addEventListener("keydown", (event) => {
   const key = event.key.toLowerCase();
   if (!answered && key === "l") chooseAnswer("law");
   if (!answered && key === "n") chooseAnswer("not-law");
-  if (answered && event.key === "Enter") {
+  if (answered && event.key === "Enter" && document.activeElement !== nextButton) {
     event.preventDefault();
     nextCard();
   }

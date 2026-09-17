@@ -1,6 +1,6 @@
 # LAW / NOT LAW
 
-LAW / NOT LAW is a tiny educational web game about recognizing primary sources of law. Each round presents 10 shuffled cards. Players choose `LAW` or `NOT LAW`, get immediate feedback, and move to the next card.
+LAW / NOT LAW is a tiny educational web game about recognizing primary sources of law. Each round draws 10 shuffled cards from a pool of 50. Players choose `LAW` or `NOT LAW`, get immediate feedback, and move to the next card.
 
 - Source: <https://github.com/JenS246/law-not-law>
 - Live site: <https://jens246.github.io/law-not-law/>
@@ -29,7 +29,7 @@ Open `game.js` and edit the `CARD_LIBRARY` array. Each card has three fields:
 
 Use `"law"` for constitutions, statutes, regulations, judicial opinions, and court rules. Use `"not-law"` for secondary sources, advocacy documents, summaries, research aids, and ordinary filings.
 
-Rounds intentionally select five cards from each category, then shuffle them. Change `ROUND_LENGTH` and `buildBalancedDeck()` together if you want a different mix.
+Rounds intentionally select five random cards from each category, then shuffle all 10. Starting a new round produces a fresh selection and order. Change `ROUND_LENGTH` and `buildBalancedDeck()` together if you want a different mix.
 
 ## Deploy with GitHub Pages
 
