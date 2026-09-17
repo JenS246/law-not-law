@@ -349,7 +349,7 @@ function chooseAnswer(choice) {
     "is-selected",
     isCorrect ? "is-correct-choice" : "is-wrong-choice",
   );
-  feedbackStatus.textContent = isCorrect ? "Yes. You got it." : "Not quite.";
+  feedbackStatus.textContent = isCorrect ? "Correct." : "Not quite.";
   feedbackText.textContent = current.explanation;
   feedback.hidden = false;
   card.classList.remove("card-enter");
