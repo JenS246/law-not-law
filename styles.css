@@ -1,34 +1,22 @@
 :root {
-  color-scheme: light dark;
-  --page: #f2f3ed;
+  color-scheme: light;
+  --page: #f0e45f;
   --ink: #1d1e21;
-  --muted: #62645f;
-  --surface: #fbfcf8;
+  --muted: #55513d;
+  --surface: #fffef7;
   --line: #242528;
   --accent: #d7ef4b;
   --accent-ink: #1d1e21;
-  --soft: #e4e6df;
-  --shadow: #c2c6ba;
+  --soft: #d3c958;
+  --shadow: #c4b83d;
   --wrong: #c95648;
+  --shape-blue: #315fbd;
+  --shape-coral: #d95743;
+  --shape-teal: #177f72;
   --radius: 18px;
   --font: "Arial Narrow", "Aptos Narrow", "Roboto Condensed", Arial, sans-serif;
   --display-font: "Arial Black", "Aptos Display", "Arial Narrow", sans-serif;
   --meta-font: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --page: #17191a;
-    --ink: #f3f4ee;
-    --muted: #b9bbb4;
-    --surface: #232629;
-    --line: #eef0e9;
-    --accent: #d7ef4b;
-    --accent-ink: #1d1e21;
-    --soft: #303438;
-    --shadow: #0c0d0e;
-    --wrong: #ee7768;
-  }
 }
 
 * {
@@ -67,7 +55,7 @@ body {
 }
 
 .ring {
-  border: 3px solid color-mix(in srgb, var(--accent) 58%, transparent);
+  border: 3px solid color-mix(in srgb, var(--shape-blue) 78%, transparent);
   border-radius: 50%;
 }
 
@@ -91,6 +79,7 @@ body {
   bottom: 2rem;
   width: 16rem;
   aspect-ratio: 1;
+  border-color: color-mix(in srgb, var(--shape-coral) 78%, transparent);
 }
 
 .ring-small-left {
@@ -98,6 +87,7 @@ body {
   left: 7.5vw;
   width: 4.5rem;
   aspect-ratio: 1;
+  border-color: color-mix(in srgb, var(--shape-teal) 82%, transparent);
   border-width: 2px;
 }
 
@@ -106,7 +96,7 @@ body {
   right: 6vw;
   width: 4rem;
   aspect-ratio: 1;
-  border-color: color-mix(in srgb, var(--ink) 30%, transparent);
+  border-color: color-mix(in srgb, var(--shape-blue) 72%, transparent);
   border-width: 2px;
 }
 
@@ -115,7 +105,7 @@ body {
   bottom: 7vh;
   width: 4.5rem;
   aspect-ratio: 1;
-  border: 3px solid color-mix(in srgb, var(--ink) 27%, transparent);
+  border: 3px solid color-mix(in srgb, var(--shape-coral) 78%, transparent);
   transform: rotate(18deg);
 }
 
@@ -126,7 +116,7 @@ body {
   height: 4.5rem;
   background: repeating-linear-gradient(
     -45deg,
-    color-mix(in srgb, var(--accent) 50%, transparent) 0 3px,
+    color-mix(in srgb, var(--shape-blue) 74%, transparent) 0 3px,
     transparent 3px 11px
   );
   transform: rotate(7deg);
@@ -137,8 +127,8 @@ body {
   left: 50%;
   width: 6rem;
   height: 3rem;
-  border-top: 3px solid color-mix(in srgb, var(--ink) 26%, transparent);
-  border-right: 3px solid color-mix(in srgb, var(--ink) 26%, transparent);
+  border-top: 3px solid color-mix(in srgb, var(--shape-teal) 74%, transparent);
+  border-right: 3px solid color-mix(in srgb, var(--shape-teal) 74%, transparent);
   transform: translateX(-50%) skewX(-12deg);
 }
 
@@ -148,9 +138,9 @@ body {
   width: 5.25rem;
   height: 3.6rem;
   background:
-    linear-gradient(color-mix(in srgb, var(--accent) 62%, transparent) 0 0) 0 0 / 80% 8px no-repeat,
-    linear-gradient(color-mix(in srgb, var(--ink) 28%, transparent) 0 0) 0 50% / 55% 8px no-repeat,
-    linear-gradient(color-mix(in srgb, var(--accent) 44%, transparent) 0 0) 0 100% / 100% 8px no-repeat;
+    linear-gradient(color-mix(in srgb, var(--shape-coral) 82%, transparent) 0 0) 0 0 / 80% 8px no-repeat,
+    linear-gradient(color-mix(in srgb, var(--shape-blue) 76%, transparent) 0 0) 0 50% / 55% 8px no-repeat,
+    linear-gradient(color-mix(in srgb, var(--shape-teal) 74%, transparent) 0 0) 0 100% / 100% 8px no-repeat;
   transform: rotate(-6deg);
 }
 
@@ -159,8 +149,8 @@ body {
   right: 3.5vw;
   width: 6rem;
   height: 6rem;
-  border-top: 3px solid color-mix(in srgb, var(--accent) 54%, transparent);
-  border-right: 3px solid color-mix(in srgb, var(--accent) 54%, transparent);
+  border-top: 3px solid color-mix(in srgb, var(--shape-coral) 76%, transparent);
+  border-right: 3px solid color-mix(in srgb, var(--shape-coral) 76%, transparent);
   border-radius: 0 100% 0 0;
   transform: rotate(18deg);
 }
@@ -170,7 +160,7 @@ body {
   bottom: 18%;
   width: 3.7rem;
   height: 2.3rem;
-  border: 3px solid color-mix(in srgb, var(--accent) 54%, transparent);
+  border: 3px solid color-mix(in srgb, var(--shape-blue) 78%, transparent);
   transform: rotate(-10deg);
 }
 
@@ -181,7 +171,7 @@ body {
   left: 1.35rem;
   width: 100%;
   height: 100%;
-  border: 2px solid color-mix(in srgb, var(--ink) 28%, transparent);
+  border: 2px solid color-mix(in srgb, var(--shape-teal) 78%, transparent);
 }
 
 button {
